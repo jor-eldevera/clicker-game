@@ -32,3 +32,17 @@ farmOneBtn.addEventListener("click", (e) => {
 function updateTotalCounterP() {
     bankP.innerText = "" + bank.getTotal();
 }
+const intervalID = setInterval(harvest, 1000);
+function harvest() {
+    let total = 0;
+
+    // farm one
+    total += farmOne.getTotalAmountPerSecond();
+
+    bank.add(total);
+    updateTotalCounterP();
+}
+
+function endHarvest() {
+    clearInterval(intervalID);
+}
