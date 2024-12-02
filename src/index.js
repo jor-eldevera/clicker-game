@@ -26,14 +26,13 @@ farmTwoBtn.innerText = "Buy " + farmTwo.getName() + ": " + farmTwo.getNextFarmCo
 let bank = new Bank();
 
 let mainButton = new Button();
-let mainButtonValue = mainButton.getCurrentValue();
 mainButtonBtn.innerText = "Add " + mainButton.getCurrentValue();
 
 upgradeBtn.innerText = "Upgrade Button: " + mainButton.getNextValueCost();
 
 // Add to bank when main button is clicked
 mainButtonBtn.addEventListener("click", (e) => {
-    bank.add(mainButtonValue);
+    bank.add(mainButton.getCurrentValue());
     updateBankP();
 });
 
@@ -80,3 +79,15 @@ function harvest() {
 function endHarvest() {
     clearInterval(intervalID);
 }
+
+// DEBUGGING CODE
+const debugAddInput = document.getElementById("debug-add-input");
+const debugAddBtn = document.getElementById("debug-add-button");
+
+debugAddBtn.addEventListener("click", (e) => {
+    const input = Number(debugAddInput.value);
+    if (!isNaN(input) && isFinite(input)) {
+        bank.add(input);
+        updateBankP();
+    }
+});
