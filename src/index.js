@@ -4,13 +4,16 @@ import { Farm } from "./Farm.js";
 
 const mainButtonBtn = document.getElementById("main-button");
 const bankP = document.getElementById("bank");
-const farmOneBtn = document.getElementById("farm1-button");
-const farmTwoBtn = document.getElementById("farm2-button");
 const upgradeBtn = document.getElementById("upgrade-button");
 
-let mainButton = new Button();
-let bank = new Bank();
+// Must add each new Farm button to farmBtnArray
+let farmBtnArray = [];
+const farmOneBtn = document.getElementById("farm1-button");
+farmBtnArray.push(farmOneBtn);
+const farmTwoBtn = document.getElementById("farm2-button");
+farmBtnArray.push(farmTwoBtn);
 
+// Must add each new Farm object to farmArray
 let farmArray = [];
 let farmOne = new Farm("Farm1", 1, 20, 1.5);
 farmArray.push(farmOne);
@@ -20,6 +23,9 @@ let farmTwo = new Farm("Farm2", 10, 200, 1.5);
 farmArray.push(farmTwo);
 farmTwoBtn.innerText = "Buy " + farmTwo.getName() + ": " + farmTwo.getNextFarmCost();
 
+let bank = new Bank();
+
+let mainButton = new Button();
 let mainButtonValue = mainButton.getCurrentValue();
 mainButtonBtn.innerText = "Add " + mainButton.getCurrentValue();
 
@@ -31,25 +37,17 @@ mainButtonBtn.addEventListener("click", (e) => {
     updateBankP();
 });
 
-// Buy a farm one when it is clicked and the player has enough money
-farmOneBtn.addEventListener("click", (e) => {
-    if (farmOne.getNextFarmCost() <= bank.getTotal()) {
-        bank.subtract(farmOne.getNextFarmCost());
-        farmOne.buyFarm();
-        updateBankP();
-        farmOneBtn.innerText = "Buy " + farmOne.getName() + ": " + farmOne.getNextFarmCost();
-    }
-});
-
-// Buy a farm two when it is clicked and the player has enough money
-farmTwoBtn.addEventListener("click", (e) => {
-    if (farmTwo.getNextFarmCost() <= bank.getTotal()) {
-        bank.subtract(farmTwo.getNextFarmCost());
-        farmTwo.buyFarm();
-        updateBankP();
-        farmTwoBtn.innerText = "Buy " + farmTwo.getName() + ": " + farmTwo.getNextFarmCost();
-    }
-});
+// For each farm, allow the player to buy a farm when it is clicked and the player has enough money
+for (let i = 0; i < farmBtnArray.length; i++) {
+    farmBtnArray[i].addEventListener("click", (e) => {
+        if (farmArray[i].getNextFarmCost() <= bank.getTotal()) {
+            bank.subtract(farmArray[i].getNextFarmCost());
+            farmArray[i].buyFarm();
+            updateBankP();
+            farmBtnArray[i].innerText = "Buy " + farmArray[i].getName() + ": " + farmArray[i].getNextFarmCost();
+        }
+    });
+}
 
 // Upgrade the main button when it is clicked and the player has enough money
 upgradeBtn.addEventListener("click", (e) => {
