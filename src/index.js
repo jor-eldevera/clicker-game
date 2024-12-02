@@ -20,10 +20,16 @@ let farmArray = [];
 let farmOne = new Farm("Farm1", 1, 20, 1.5);
 farmArray.push(farmOne);
 farmOneBtn.innerText = "Buy " + farmOne.getName() + ": " + farmOne.getNextFarmCost();
-
 let farmTwo = new Farm("Farm2", 10, 200, 1.5);
 farmArray.push(farmTwo);
 farmTwoBtn.innerText = "Buy " + farmTwo.getName() + ": " + farmTwo.getNextFarmCost();
+
+let farmPersecArray = [];
+const farmOnePersecP = document.getElementById("farm1-persec-p");
+farmPersecArray.push(farmOnePersecP);
+const farmTwoPersecP = document.getElementById("farm2-persec-p");
+farmPersecArray.push(farmTwoPersecP);
+const totalPersecP = document.getElementById("total-persec-p");
 
 let bank = new Bank();
 
@@ -66,6 +72,7 @@ upgradeBtn.addEventListener("click", (e) => {
 function update() {
     updateBankP();
     enableAffordableButtons();
+    updatePersecPs();
 }
 
 // Updates the text of the bank
@@ -73,6 +80,7 @@ function updateBankP() {
     bankP.innerText = "" + bank.getTotal();
 }
 
+// Enables/disables buttons based on affordability
 function enableAffordableButtons() {
     // Farms
     for (let i = 0; i < farmBtnArray.length; i++) {
@@ -89,6 +97,15 @@ function enableAffordableButtons() {
     } else {
         upgradeBtn.disabled = true;
     }
+}
+
+function updatePersecPs() {
+    let totalPersec = 0;
+    for (let i = 0; i < farmArray.length; i++) {
+        farmPersecArray[i].innerText = farmArray[i].getTotalAmountPerSecond() + "/sec";
+        totalPersec += farmArray[i].getTotalAmountPerSecond();
+    }
+    totalPersecP.innerText = "total persec: " + totalPersec + "/sec";
 }
 
 // Loop clock code
