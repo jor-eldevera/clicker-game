@@ -7,6 +7,7 @@ export class Button {
     constructor() {
         this.#currentValue = 1;
         this.#indexIntoAllValues = 0;
+        this.#nextValueCost = 100; // set initial upgrade cost
     }
 
     getCurrentValue() {
@@ -17,11 +18,11 @@ export class Button {
         return this.#nextValueCost;
     }
 
-    #upgrade() {
+    upgrade() {
         this.#indexIntoAllValues++;
         this.#currentValue = this.#allValues[this.#indexIntoAllValues];
 
-        // CHANGE THIS LATER
-        this.#nextValueCost = this.#nextValueCost * 1.05;
+        // CHANGE THIS LATER, AFTER TESTING
+        this.#nextValueCost = this.#nextValueCost * 1.5;
     }
 }
