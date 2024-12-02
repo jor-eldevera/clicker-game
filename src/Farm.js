@@ -18,7 +18,32 @@ export class Farm {
         this.#nextFarmCost *= this.#nextFarmCostMultiplier;
     }
 
+    getName() {
+        return this.#name;
+    }
+
+    /**
+     * 
+     * @returns amount that one farm returns per second
+     */
+    getAmountPerSecond() {
+        return this.#amountPerSecond;
+    }
+
+    getNumFarms() {
+        return this.#numFarms;
+    }
+
     getNextFarmCost() {
         return this.#nextFarmCost;
     }
+
+    /**
+     * 
+     * @returns amount that all farms combined return per second
+     */
+    getTotalAmountPerSecond() {
+        return this.#amountPerSecond * this.#numFarms;
+    }
+
 }
