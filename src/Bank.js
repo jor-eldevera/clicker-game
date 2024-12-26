@@ -10,7 +10,7 @@ export class Bank {
     }
 
     add(value) {
-        this.#total += value;
+        this.#total = +(this.#total + value).toFixed(2);
     }
 
     subtract(value) {
