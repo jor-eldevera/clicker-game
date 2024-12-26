@@ -18,6 +18,6 @@ export class Bank {
             throw Error("subtracting value too large from bank");
         }
 
-        this.#total -= value;
+        this.#total = +(this.#total - value).toFixed(2);
     }
 }

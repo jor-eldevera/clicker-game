@@ -15,7 +15,7 @@ export class Farm {
 
     buyFarm() {
         this.#numFarms++;
-        this.#nextFarmCost *= this.#nextFarmCostMultiplier;
+        this.#nextFarmCost = +(this.#nextFarmCost * this.#nextFarmCostMultiplier).toFixed(2);
     }
 
     getName() {

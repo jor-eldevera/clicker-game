@@ -6,6 +6,8 @@ const mainButtonBtn = document.getElementById("main-button");
 const bankP = document.getElementById("bank");
 const upgradeBtn = document.getElementById("upgrade-button");
 
+const upgradeBtnFrontText = "Upgrade The Button: ";
+
 // Must add each new Farm button to farmBtnArray
 let farmBtnArray = [];
 const farmOneBtn = document.getElementById("farm1-button");
@@ -36,7 +38,7 @@ let bank = new Bank();
 let mainButton = new Button();
 mainButtonBtn.innerText = "Add " + mainButton.getCurrentValue();
 
-upgradeBtn.innerText = "Upgrade Button: " + mainButton.getNextValueCost();
+upgradeBtn.innerText = upgradeBtnFrontText + mainButton.getNextValueCost();
 upgradeBtn.disabled = true;
 
 // Add to bank when main button is clicked
@@ -64,7 +66,7 @@ upgradeBtn.addEventListener("click", (e) => {
         update();
         mainButton.upgrade();
         mainButtonBtn.innerText = "Add " + mainButton.getCurrentValue();
-        upgradeBtn.innerText = "Upgrade Button: " + mainButton.getNextValueCost();
+        upgradeBtn.innerText = upgradeBtnFrontText + mainButton.getNextValueCost();
     }
 });
 
@@ -99,6 +101,7 @@ function enableAffordableButtons() {
     }
 }
 
+// Updates the total per sec text
 function updatePersecPs() {
     let totalPersec = 0;
     for (let i = 0; i < farmArray.length; i++) {

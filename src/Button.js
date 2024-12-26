@@ -23,6 +23,6 @@ export class Button {
         this.#currentValue = this.#allValues[this.#indexIntoAllValues];
 
         // CHANGE THIS LATER, AFTER TESTING
-        this.#nextValueCost = this.#nextValueCost * 1.5;
+        this.#nextValueCost = +(this.#nextValueCost * 1.5).toFixed(2);
     }
 }
