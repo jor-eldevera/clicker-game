@@ -1,3 +1,30 @@
 h1 {
     color: red;
 }
+
+.farm-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#farms {
+    width: 300px;
+}
+
+.buy-farm-btn {
+    height: 30px;
+}
+
+button {
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 2px 2px 2px gray;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.9);
+    box-shadow: 1px 1px 1px 1px gray;
+}
